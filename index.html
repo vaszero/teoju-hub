@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>터주농산 컨설팅 허브</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: 상단 표지 + 고정 목차 + 섹션 카드 (도구 → 문서) */
+html,body{margin:0}
+:root{--bg:#F4F3EE;--panel:#FFFFFF;--ink:#262A22;--sub:#646B5C;--line:#DADFD2;--green:#3F6B3A;--green-soft:#E6EEE1;--jujube:#8E2F25;--fill-bg:#FFF1B8;--fill-ink:#6E5200;
+--display:"Gowun Batang","Noto Serif KR",serif;--body:"IBM Plex Sans KR","Noto Sans KR","Malgun Gothic",sans-serif}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#161A14;--panel:#1F241C;--ink:#E7EBDF;--sub:#A3AC97;--line:#343B2F;--green:#8FBF83;--green-soft:#28331F;--jujube:#E08A7E;--fill-bg:#3A3215;--fill-ink:#F1D98A;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#161A14;--panel:#1F241C;--ink:#E7EBDF;--sub:#A3AC97;--line:#343B2F;--green:#8FBF83;--green-soft:#28331F;--jujube:#E08A7E;--fill-bg:#3A3215;--fill-ink:#F1D98A;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15.5px;line-height:1.7}
+.wrap{max-width:1040px;margin:0 auto;padding-inline:16px;padding-block:28px 64px}
+.cover{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:10px 20px;padding-bottom:18px;border-bottom:2px solid var(--green)}
+.cover h1{font-family:var(--display);font-size:34px;line-height:1.25;margin:0;color:var(--green);text-wrap:balance}
+.cover p{margin:6px 0 0;color:var(--sub)}
+.tag{font-size:12.5px;font-weight:700;color:var(--green);border:1.5px solid var(--green);border-radius:999px;padding:3px 12px;white-space:nowrap}
+nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);display:flex;gap:6px;overflow-x:auto;padding:12px 0;margin-bottom:8px;border-bottom:1px solid var(--line)}
+nav.toc a{white-space:nowrap;text-decoration:none;color:var(--ink);font-size:14px;font-weight:600;padding:6px 12px;border-radius:999px;background:var(--panel);border:1px solid var(--line)}
+nav.toc a:hover,nav.toc a:focus-visible{border-color:var(--green);color:var(--green);outline:none}
+section{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:24px;margin-top:18px;scroll-margin-top:70px;min-width:0}
+section>h2{font-family:var(--display);font-size:24px;margin:0 0 4px;color:var(--ink)}
+section>.lead{color:var(--sub);margin:0 0 16px}
+h3{font-size:17px;margin:22px 0 6px;color:var(--green)}
+h4{font-size:16px;margin:20px 0 6px}
+.sub{color:var(--sub);font-size:13.5px;margin:2px 0 10px}
+.apps{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.app{border:1px solid var(--line);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.app h3{margin:0;color:var(--ink);font-size:18px}
+.app p{margin:0;color:var(--sub);font-size:14px}
+.app a{align-self:flex-start;margin-top:6px;background:var(--green);color:var(--panel);text-decoration:none;font-weight:600;border-radius:7px;padding:9px 14px}
+.app ol{margin:0;padding-left:18px;font-size:14px;color:var(--sub)}
+ol.qs{padding-left:28px;margin:6px 0}
+ol.qs li{margin-bottom:10px}
+ol.qs b{font-weight:600}
+ol.qs span{display:block;color:var(--sub);font-size:13.5px}
+ul.howto,ul{padding-left:20px}
+ul.check{list-style:none;padding-left:0}
+ul.check li::before{content:"□ ";color:var(--green)}
+.tw{overflow-x:auto;margin:8px 0 12px}
+table{width:100%;border-collapse:collapse;font-size:14.5px;min-width:520px}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--green-soft);color:var(--green)}
+.frame{overflow-x:auto;border:1px solid var(--line);border-radius:8px;background:#E9EBE5}
+.frame iframe{display:block;width:1560px;height:1600px;border:0}
+details.post{border:1px solid var(--line);border-radius:10px;margin-bottom:10px;overflow:hidden}
+details.post summary{cursor:pointer;padding:12px 16px;font-weight:600;background:var(--green-soft);color:var(--green)}
+.pbody{padding:6px 18px 16px}
+.pbody .ptitle{display:none}
+.pbody p{margin:0 0 12px}
+.fill{background:var(--fill-bg);color:var(--fill-ink);padding:0 3px;border-radius:2px}
+.ph{display:inline-block;color:var(--sub);border:1px dashed var(--line);border-radius:5px;padding:2px 8px;font-size:13.5px}
+footer{margin-top:28px;color:var(--sub);font-size:13px;text-align:right}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="cover">
+    <div>
+      <h1>터주농산 컨설팅 허브</h1>
+      <p>2026. 9. 10 미팅 이후 준비한 도구와 자료를 한곳에 모았습니다.</p>
+    </div>
+    <span class="tag">터주 대표님 용</span>
+  </header>
+  <nav class="toc" aria-label="목차">
+    <a href="#tools">글쓰기 도구</a><a href="#detail">건나물 상세페이지 가안</a><a href="#guide">블로그 세팅 가이드</a><a href="#posts">블로그 글 3편</a><a href="#questions">아버지 이야기 질문지</a>
+  </nav>
+
+  <section id="tools">
+    <h2>글쓰기 도구</h2>
+    <p class="lead">주제와 메모를 넣고 Claude·ChatGPT에 한 번 물어보면 글이 완성됩니다. API 키는 필요 없습니다.</p>
+    <div class="apps">
+      <div class="app"><h3>네이버 블로그 글쓰기</h3><p>터주대감 딸의 말투로, 글 유형마다 구성이 달라집니다. 다 쓴 글은 말투 점검(상투구·효능 표현·같은 어미 반복)을 거칩니다.</p>
+        <ol><li>프롬프트 복사 → Claude·ChatGPT에 붙여넣기</li><li>받은 답을 붙여넣고 [글 만들기]</li><li>본문 복사 → 네이버 블로그에 붙여넣기</li></ol>
+        <a href="https://vaszero.github.io/teoju-blog-writer/" target="_blank" rel="noopener">블로그 글쓰기 열기</a></div>
+      <div class="app"><h3>티스토리 글쓰기</h3><p>질문의 답부터 쓰는 정보 정리형 글을 HTML로 만듭니다. 검색·AI가 읽는 구조화 데이터(스키마)가 함께 들어갑니다.</p>
+        <ol><li>프롬프트 복사 → Claude·ChatGPT에 붙여넣기</li><li>받은 답을 붙여넣고 [글 만들기]</li><li>HTML 복사 → 티스토리 HTML 모드에 붙여넣기</li></ol>
+        <a href="https://vaszero.github.io/teoju-tistory-writer/" target="_blank" rel="noopener">티스토리 글쓰기 열기</a></div>
+    </div>
+  </section>
+
+  <section id="detail">
+    <h2>국산 건나물 상세페이지 가안 v4</h2>
+    <p class="lead">힘가네 생강청 상세페이지의 구성 순서를 따랐습니다. 노란 표시는 예시로 넣은 문구·숫자이고, 사진 칸은 촬영할 장면입니다. 옆으로 밀어서 보세요.</p>
+    <div class="frame"><iframe id="detailFrame" title="건나물 상세페이지 가안 v4" loading="lazy"></iframe></div>
+  </section>
+
+  <section id="guide">
+    <h2>네이버 블로그 세팅 가이드</h2>
+    <p class="lead">기본 정보 · 카테고리 · 채널 연결 · 첫 글 3편</p>
+    <p class="sub">표시 없음 = 미팅·이전 협의에서 정한 내용 · <b>[제안]</b> = 대표님이 고르거나 바꾸실 수 있는 안</p><h3>1. 기본 정보</h3><div class="tw"><table><thead><tr><th>항목</th><th>입력 내용</th><th>비고</th></tr></thead><tbody><tr><td>블로그명</td><td>자연 그대로 국산 농산물, 터주대감 터주농산</td><td>첨가물 없음 확인 전에는 &quot;손질만 해서 국산 농산물, 터주대감 터주농산&quot;</td></tr><tr><td>별명</td><td>터주대감</td><td>인스타·스레드 화자명과 동일</td></tr><tr><td>소개글</td><td>원주 터주농산. 26년 농산물 터주대감 아버지의 기준으로 고른 국산 농산물, 씨없는 세척대추부터 제철 나물까지</td><td></td></tr><tr><td>프로필 이미지</td><td>현재 로고 → 리뉴얼 로고 완성 후 교체</td><td>리뉴얼 약 2개월 후 예정</td></tr><tr><td>블로그 주제 [제안]</td><td>요리·레시피</td><td>대추·나물을 효능이 아닌 먹는 법으로 소개하기 위함</td></tr></tbody></table></div><h3>2. 카테고리 [제안]</h3><div class="tw"><table><thead><tr><th>카테고리</th><th>담을 글</th><th>미팅 근거</th></tr></thead><tbody><tr><td>공지</td><td>터주농산 소개 1편 (상단 고정)</td><td>26년 업력·가업 승계 스토리</td></tr><tr><td>터주 이야기</td><td>아버지 산지 방문·검수, 아버지와 딸의 기준</td><td>아버지의 산지 직접 방문·검수 강점</td></tr><tr><td>고르는 법·먹는 법</td><td>대추·건나물 고르는 법, 손질·불리기·보관, 레시피</td><td>레시피 전달 (인스타 카드뉴스와 같은 주제)</td></tr><tr><td>명절·선물</td><td>설·대보름·추석 세트, 답례품</td><td>명절 세트·프리미엄 답례품 기획</td></tr><tr><td>상품·납품 안내</td><td>상품별 안내 글, 대량·납품 문의</td><td>B2C·B2B 동시 확장</td></tr></tbody></table></div><h3>3. 채널 연결</h3><ul><li>스마트플레이스: 주소 오류부터 수정 후 블로그와 연결</li><li>블로그 글 끝: 해당 상품의 스마트스토어 링크 첨부</li><li>[제안] 블로그 화면에 스마트스토어 바로가기 배너와 지도(플레이스) 배치</li><li>네이버 쇼핑라이브: 라이브 일정·다시보기를 블로그 글로 함께 안내</li></ul><h3>4. 첫 글 3편</h3><div class="tw"><table><thead><tr><th>순서</th><th>제목 [제안]</th><th>근거</th></tr></thead><tbody><tr><td>1편</td><td>터주농산은 어떤 곳인가요? 26년 농산물 터주대감과 2대째 딸 이야기</td><td>26년 업력·가업 승계</td></tr><tr><td>2편</td><td>씨 없는 손질된 대추, 씻고 씨 빼는 수고 없이 먹는 법</td><td>AI 검색 목표 질문 &quot;씨 없는 손질된 대추&quot;</td></tr><tr><td>3편</td><td>정월대보름 묵은나물 준비, 국산 건고사리 불리고 삶는 법</td><td>대보름 세트 기획</td></tr></tbody></table></div><p class="sub">발행량: 처음 3개월 블로그 3편 (기존 운영 계획)</p><h3>5. 글쓰기 기본 규칙</h3><ul><li>첫 문단에 정의 문장 고정</li><li>직접 찍은 사진 사용 · 실제 세척 장면, 아이가 먹는 모습처럼 진짜 모습 우선</li><li>효능 표현 대신 맛·식감·손질 편의·먹는 법으로 설명</li><li>AI로 만든 초안은 그대로 붙여 넣지 않고 대표님 말투로 고쳐서 발행</li><li>증빙이 확인되지 않은 이력(청와대 납품·판매왕 등)은 자료 확인 후 사용</li></ul><h3>6. 티스토리와 나눠 쓰기</h3><div class="tw"><table><thead><tr><th>구분</th><th>네이버 블로그</th><th>티스토리</th></tr></thead><tbody><tr><td>톤</td><td>친근함 · 딸의 이야기</td><td>전문성 · 정보 정리</td></tr><tr><td>초기 글</td><td>3편</td><td>3편 (같은 글 복사 금지)</td></tr></tbody></table></div><h3>7. 체험단 글과의 연결</h3><ul><li>체험단 블로그 글이 올라오면 "상품·납품 안내" 글에서 함께 소개</li><li>체험단은 제품 제공 + 원고료로 운영하고, 글에 대가를 받았다는 표기 필수</li><li>구매평 페이백 방식은 네이버 리뷰 정책 위반 소지가 있어 제외</li></ul><h3>8. 대표님이 준비할 것</h3><ul class="check"><li>네이버 블로그·티스토리 개설 + 주소 공유</li><li>블로그명 최종 확정 ("자연 그대로" 사용 여부)</li><li>스마트플레이스 주소 오류 수정</li><li>아버지 이력·스토리 사진 3~4장 전달</li><li>대추칩 사진·아이 영상 전달</li></ul>
+  </section>
+
+  <section id="posts">
+    <h2>블로그 글 3편 (초안)</h2>
+    <p class="lead">눌러서 펼쳐 보세요. 노란 칸을 채운 뒤 사진을 넣어 발행합니다.</p>
+    <details class="post" open><summary>1편 · 공지</summary><div class="pbody"><h3 class="ptitle">1편 · 공지</h3>
+<p><strong>제목: 터주농산은 어떤 곳인가요? 26년 농산물 터주대감과 2대째 딸 이야기</strong></p>
+<p>안녕하세요, 터주대감 딸이에요.</p>
+<p>블로그를 열어 놓고 첫 글을 뭘 쓸까 한참 고민했는데, 결국 저희가 누구인지부터 말씀드리는 게 맞겠더라고요. 물건을 사기 전에 누가 고르고 누가 담는지 궁금한 건 저도 마찬가지거든요.</p>
+<p>터주농산은 강원 원주에서 2000년부터 국산 농산물을 다뤄 온 곳이에요. 지금은 씨없는 세척대추와 대추칩, 국산 건나물을 아부지와 제가 같이 고르고 담고 있어요.</p>
+<p><span class="ph">[사진: 아부지가 산지에서 원물을 살펴보는 모습]</span></p>
+<h4>'터주'라는 이름</h4>
+<p>터주는 집터를 지켜 주는 신을 부르는 말이에요. 한자리를 오래 지키는 사람을 두고 "저 사람이 여기 터주대감이야"라고들 하잖아요. 아부지가 딱 그런 분이에요. <span class="fill">[시작한 해와 계기 — 질문지 Q1]</span> 이후로 26년 동안 산지랑 시장만 오가셨고, 시장에서는 다들 아부지를 터주대감이라고 불렀어요. <span class="fill">[별명 사연 — 질문지 Q3]</span></p>
+<p>로고 밑에 "농산물 전문 터주대감"이라고 적어 넣은 건 그 이름을 제가 이어받고 싶어서였어요.</p>
+<p><span class="ph">[사진: 아부지 옛날 사진 또는 작업장 사진]</span></p>
+<h4>아부지가 물건을 고르는 법</h4>
+<p>아부지는 지금도 산지에 직접 가서 눈으로 본 것만 들여오세요. 전화로 "이번 물건 좋다"는 말을 들어도 꼭 한 번은 가서 보시고, 손으로 집어 보세요.</p>
+<p>옆에서 지켜보면 순서가 있어요. <span class="fill">[가장 먼저 보는 것 3가지 — 질문지 Q4]</span> 이걸 하나씩 확인하시는데, 마음에 안 들면 값이 아무리 좋아도 그냥 돌아서세요. 어릴 땐 그게 왜 그렇게 고집스러워 보였는지 몰라요. 제가 직접 팔아 보니까 알겠더라고요. 한 번 실망한 손님은 다시 안 오시니까요.</p>
+<p><span class="ph">[사진: 원물을 손에 들고 보는 장면]</span></p>
+<h4>딸이 하나 더 보는 것</h4>
+<p>저는 11살, 7살 두 아이 엄마예요. 그래서 아부지 기준에 하나를 더 붙였어요. "내 아이가 먹는 거라도 괜찮은가."</p>
+<p>대추를 씻고 씨까지 빼서 담기 시작한 것도 그 질문에서 나왔어요. 애들한테 대추를 주려면 씻어야 하고, 씨 때문에 걱정되니까 또 하나하나 칼로 갈라야 했거든요. 봉지 뜯자마자 그냥 먹을 수 있으면 좋겠다 싶었어요.</p>
+<p>솔직히 말하면 아부지랑은 지금도 자주 부딪혀요. 큰 포대로만 26년을 팔아 오신 분이라, 작은 봉지에 나눠 담자고 하면 고개부터 저으세요. 그래도 좋은 것만 내놓자는 데서는 한 번도 생각이 갈린 적이 없어요. 그거 하나 믿고 서로 맞춰 가는 중이에요.</p>
+<p><span class="ph">[사진: 아부지와 딸이 같이 작업하는 손]</span></p>
+<h4>터주농산에서 파는 것</h4>
+<p><strong>씨없는 세척대추</strong>
+경북 경산 대추를 씻고 씨를 빼서 바로 먹을 수 있게 담았어요. 대추차 끓일 때도, 애들 간식으로 줄 때도 손질할 게 없어요.</p>
+<p><strong>대추칩</strong>
+대추를 얇게 썰어 바삭하게 만든 간식이에요. 원주의 한 아이스크림 가게에 토핑으로 들어가기도 했어요. <span class="fill">[납품처 표기 동의 확인]</span></p>
+<p><strong>국산 건나물</strong>
+고사리, 취나물, 곤드레를 <span class="fill">[산지]</span>에서 직접 보고 골랐어요. 명절이나 대보름 나물 준비하실 때 찾으시는 분들이 많아요.</p>
+<p><span class="ph">[사진: 상품 3종]</span></p>
+<h4>이 블로그에 올릴 것</h4>
+<p>여기에는 아부지가 산지에서 보고 온 얘기, 대추랑 나물 고르는 법, 저희 집에서 실제로 해 먹는 방법을 올리려고 해요. 파는 얘기보다는 먹는 얘기를 더 많이 하게 될 것 같아요.</p>
+<p>궁금하신 건 댓글로 남겨 주세요. 아부지한테 여쭤봐서라도 답해 드릴게요.</p>
+<p>👉 터주농산 스마트스토어 <span class="fill">[링크]</span>
+📦 대량 구매·납품 문의 <span class="fill">[연락처]</span></p>
+<h1>터주농산 #원주농산물 #국산농산물 #씨없는대추 #세척대추 #대추칩 #국산건나물 #터주대감</h1></div></details><details class="post" ><summary>2편 · 고르는 법·먹는 법</summary><div class="pbody"><h3 class="ptitle">2편 · 고르는 법·먹는 법</h3>
+<p><strong>제목: 씨 없는 손질된 대추, 씻고 씨 빼는 수고 없이 먹는 법</strong></p>
+<p>대추차 한 번 끓이려면 일이 많아요. 씻고, 주름 사이 먼지 빠지게 불리고, 물기 말리고, 그다음엔 하나하나 칼로 갈라서 씨를 빼야 하죠. 저도 그게 귀찮아서 사 둔 대추를 몇 달씩 묵혀 둔 적이 있어요. 그래서 저희는 아예 씻고 씨까지 빼서 담기로 했어요.</p>
+<p>터주농산 씨없는 세척대추는 강원 원주 터주농산이 경북 경산 대추를 세척하고 씨를 제거해 바로 먹을 수 있게 만든 제품이에요.</p>
+<h4>대추 손질이 유독 번거로운 이유</h4>
+<p>대추는 껍질이 쭈글쭈글해요. 말리는 동안 생긴 주름이라 어쩔 수 없는데, 문제는 그 사이에 먼지가 잘 낀다는 거예요. 물에 휙 헹구는 걸로는 잘 안 빠지고, 잠깐 담가 뒀다가 문질러 씻어야 해요.</p>
+<p>씻은 다음에는 물기를 말려야 하고요. 젖은 채로 두면 금방 눅눅해지거든요. 차나 요리에 쓰려면 씨도 빼야 하는데, 이게 한 알 두 알이 아니라 한 봉지를 다 하려면 시간이 꽤 걸려요.</p>
+<h4>통대추를 집에서 씻는다면</h4>
+<p>통대추를 사셨다면 이렇게 씻어 보세요. 미지근한 물에 5분쯤 담가 두면 주름이 살짝 펴지면서 먼지가 불어요. 그때 손바닥으로 비비듯 문지르고, 흐르는 물에 두세 번 헹궈 주세요. 다 씻은 대추는 채반에 한 겹으로 펼쳐서 물기가 완전히 마를 때까지 두셔야 해요. 덜 마른 채로 통에 넣으면 금방 눅눅해지거든요. 이 과정이 번거로우시면 손질된 대추가 답이에요.</p>
+<h4>좋은 대추 고르는 법</h4>
+<p>손질된 대추를 사든 통대추를 사든, 고르는 눈은 비슷해요.</p>
+<ul>
+<li><strong>색</strong>: 붉은 갈색이 고르게 돌고 윤기가 있는 게 좋아요. 군데군데 검게 변했거나 하얀 가루가 핀 건 피하세요.</li>
+<li><strong>주름</strong>: 적당히 고르게 잡힌 게 잘 마른 거예요. 지나치게 딱딱하고 쪼그라든 건 너무 오래 말린 거예요.</li>
+<li><strong>크기</strong>: 크기가 들쭉날쭉하지 않고 고른지 보세요.</li>
+<li><strong>흠</strong>: 벌레 먹은 구멍이나 터진 자국이 없는지 확인하세요.</li>
+</ul>
+<p>대추는 크기에 따라 별초, 특초, 상초 같은 이름으로 나눠 팔아요. 그런데 판매처마다 기준이 조금씩 달라서 이름만 보고는 실제 크기를 알기 어려워요. 그래서 저희 대추가 어느 정도인지는 손에 올린 사진으로 보여 드릴게요. <span class="fill">[한 알 크기·무게]</span></p>
+<p><span class="ph">[사진: 손에 든 대추 크기]</span></p>
+<h4>저희는 이렇게 준비해요</h4>
+<p>경북 경산 대추 가운데 <span class="fill">[선별 기준]</span>을 보고 골라요. 그다음 <span class="fill">[세척 방식]</span>으로 씻고, <span class="fill">[씨 제거 방식]</span>으로 씨를 뺀 뒤 <span class="fill">[용량]</span>씩 나눠 담아요.</p>
+<p><span class="ph">[사진: 씨 제거 단면]</span>
+<span class="ph">[사진: 원물 살펴보는 장면]</span></p>
+<h4>저희 집에서는 이렇게 먹어요</h4>
+<p><span class="fill">[우리 집 아이들이 대추를 먹는 장면 — 언제, 어떻게 먹는지 3~4줄]</span></p>
+<p><span class="ph">[사진: 아이가 대추를 먹는 모습]</span></p>
+<h4>이렇게도 드셔 보세요</h4>
+<p><strong>대추차</strong>
+물에 대추를 넣고 약불에서 은근히 끓이면 돼요. 씨를 미리 뺐으니 끓인 뒤 거를 일이 줄고, 대추를 잘게 찢어 넣으면 더 진하게 우러나요. <span class="fill">[집에서 쓰는 비율·시간]</span></p>
+<p><strong>요거트·오트밀 토핑</strong>
+가위로 잘게 잘라 올리면 따로 설탕을 넣지 않아도 단맛이 돌아요. 아침에 바쁠 때 좋아요.</p>
+<p><strong>밥이나 약밥에</strong>
+찹쌀밥 지을 때 몇 알 넣어도 되고, 약밥 만들 때 씨 빼는 수고가 없으니 훨씬 수월해요.</p>
+<p><strong>대추고</strong>
+저희 대추로 대추고를 만들어 블로그에 올려 주신 고객분도 계세요. 씨 빼는 과정이 없으니 대추고처럼 손이 많이 가는 요리에 특히 편해요. <span class="fill">[고객 블로그 링크 — 동의 후]</span></p>
+<h4>보관은 이렇게</h4>
+<p><span class="fill">[제품 표시사항의 보관 방법]</span>대로 두시면 돼요. 한 번 뜯은 뒤에는 꼭 밀봉해 주세요. 습기를 먹으면 눅눅해지기 쉬워서, 여름철엔 냉장고에 두시는 게 마음 편해요.</p>
+<h4>많이 물어보시는 것</h4>
+<p><strong>Q. 진짜 씨가 없어요?</strong>
+네, 씨를 뺀 제품이에요. <span class="fill">[씨 조각 관련 안내 — 확인]</span></p>
+<p><strong>Q. 씻어서 오나요?</strong>
+네, 씻고 씨까지 빼서 담았어요. 받으시면 바로 드셔도 돼요.</p>
+<p><strong>Q. 어디 대추예요?</strong>
+경북 경산 대추예요. <span class="fill">[표시사항과 일치 확인]</span></p>
+<p>👉 씨없는 세척대추 보러 가기 <span class="fill">[스마트스토어 링크]</span>
+📦 대량 구매·납품 문의 <span class="fill">[연락처]</span></p>
+<h1>씨없는대추 #손질된대추 #세척대추 #대추차 #경산대추 #아이간식 #터주농산 #원주대추</h1></div></details><details class="post" ><summary>3편 · 명절·선물</summary><div class="pbody"><h3 class="ptitle">3편 · 명절·선물</h3>
+<p><strong>제목: 정월대보름 묵은나물 준비, 국산 건고사리 불리고 삶는 법</strong></p>
+<p>마른 고사리는 사 놓고도 손이 잘 안 가요. 불리고 삶는 데 하루가 걸리니까요. 그래도 대보름 전에 한 번 해 두면 며칠은 반찬 걱정이 없어서, 저는 이맘때 한꺼번에 해 두는 편이에요. 순서만 알면 생각보다 어렵지 않아요.</p>
+<p>터주농산 국산 건나물은 강원 원주 터주농산이 <span class="fill">[산지]</span>에서 직접 확인하고 고른 고사리, 취나물, 곤드레를 말린 제품이에요.</p>
+<h4>대보름 상에는 뭐가 올라갈까</h4>
+<p>정월대보름은 음력 1월 15일, 새해 들어 처음 맞는 보름날이에요. 이날은 찹쌀, 차조, 수수, 팥, 콩 같은 곡식을 섞어 지은 오곡밥에 지난해 말려 둔 나물을 불려 볶아서 같이 먹어요. 이 나물을 묵은나물이라고 해요.</p>
+<p>아침에는 호두나 땅콩 같은 부럼을 깨물고요. <span class="fill">[대보름에 대한 대표님 어릴 적 기억 1~2줄]</span></p>
+<p><span class="ph">[사진: 오곡밥과 나물 세 가지를 올린 대보름 상]</span></p>
+<h4>좋은 건고사리 고르는 법</h4>
+<ul>
+<li><strong>색</strong>: 갈색이 고르게 도는 게 좋아요. 너무 검거나 얼룩덜룩한 건 보관 상태를 의심해 보세요.</li>
+<li><strong>줄기</strong>: 굵기가 고르고 부러진 부스러기가 적은 게 좋아요. 봉지 바닥에 가루가 많으면 오래됐거나 거칠게 다룬 거예요.</li>
+<li><strong>마른 정도</strong>: 손으로 쥐었을 때 바스락하게 잘 마른 게 좋아요. 눅눅하면 곰팡이가 생기기 쉬워요.</li>
+<li><strong>원산지</strong>: 봉지에 원산지가 정확히 적혀 있는지 꼭 확인하세요.</li>
+</ul>
+<p><span class="ph">[사진: 건고사리 원물 클로즈업]</span></p>
+<h4>건고사리 불리고 삶는 순서</h4>
+<p>먼저 찬물에 한 번 헹궈서 먼지를 털어 주세요. 그다음 넉넉한 찬물에 담가 반나절에서 하룻밤 정도 불려요. 물을 넉넉히 잡아야 고루 불어요.</p>
+<p>다 불면 끓는 물에 넣고 삶아요. 시간보다는 줄기를 손가락으로 눌러 보는 게 정확해요. 말랑하게 눌리면 다 된 거예요. 너무 오래 삶으면 흐물흐물해지니까 중간중간 확인해 주세요.</p>
+<p>불을 끄고 한 김 식으면 찬물에 헹궈서 새 물에 몇 시간 담가 두세요. 그래야 특유의 쓴맛이 빠져요. 마지막으로 물기를 꼭 짜서 먹기 좋은 길이로 자르면 준비 끝이에요.</p>
+<p><span class="fill">[터주 고사리로 직접 해 본 불리는 시간·삶는 시간]</span>
+<span class="fill">[불린 뒤 무게: 건조 100g → 약 ○g]</span></p>
+<p><span class="ph">[사진: 불리기 전·후 비교]</span></p>
+<h4>아부지가 고사리 삶을 때 하는 말</h4>
+<p><span class="fill">[아부지가 고사리를 다룰 때 꼭 하시는 말이나 습관 — 2~3줄]</span></p>
+<h4>고사리볶음</h4>
+<p>불린 고사리에 국간장이랑 다진 마늘을 넣고 조물조물 무쳐서 잠깐 두세요. 간이 배는 동안 팬에 들기름을 두르고, 고사리를 넣어 중불에서 볶아요. 물을 두세 숟가락 넣고 뚜껑을 덮어 뜸을 들이면 훨씬 부드러워져요. 마지막에 송송 썬 파랑 깨를 올리면 끝이에요.</p>
+<p><span class="ph">[사진: 고사리볶음]</span></p>
+<h4>취나물볶음</h4>
+<p>취나물도 불리고 삶는 순서는 고사리와 비슷해요. 삶은 취나물은 물기를 짜서 국간장, 다진 마늘로 무친 뒤 들기름에 볶아 주세요. 향이 진해서 양념은 고사리보다 조금 덜 해도 괜찮아요. <span class="fill">[품목별 시간 차이 — 확인]</span></p>
+<h4>곤드레밥</h4>
+<p>곤드레는 밥으로 먹는 게 제일 맛있어요. 불려 삶은 곤드레에 들기름이랑 국간장을 살짝 버무려서, 쌀 위에 얹고 평소처럼 밥을 지으면 돼요. 간장에 다진 파, 고춧가루, 참기름을 섞은 양념장 하나면 한 끼가 돼요.</p>
+<p><span class="ph">[사진: 곤드레밥]</span></p>
+<h4>고사리 육개장</h4>
+<p>고사리를 넉넉히 불렸다면 육개장도 한 번 끓여 보세요. 삶아서 결대로 찢은 소고기에 고사리, 숙주, 대파를 넣고 고춧가루와 국간장, 다진 마늘로 버무려 둬요. 냄비에 고기 삶은 육수를 붓고 버무린 재료를 넣어 푹 끓이면 돼요. 고사리가 많이 들어갈수록 국물 맛이 깊어져요.</p>
+<h4>남은 나물은</h4>
+<p>한 번에 다 쓰지 못한 나물은 물기를 짜서 한 번 먹을 만큼씩 나눠 냉동해 두세요. 꺼내서 바로 볶거나 국에 넣으면 돼요. 마른 건나물은 햇빛이 안 드는 서늘하고 건조한 곳에 두시고요.</p>
+<h4>터주농산 대보름 나물</h4>
+<p>고사리, 취나물, 곤드레를 한 번에 준비하실 수 있게 <span class="fill">[대보름 세트 구성]</span>을 준비하고 있어요. 식당이나 반찬가게에서 대포장으로 찾으시면 따로 연락 주세요.</p>
+<p>👉 국산 건나물 보러 가기 <span class="fill">[스마트스토어 링크]</span>
+📦 식당·반찬가게 대량 납품 문의 <span class="fill">[연락처]</span></p>
+<h1>정월대보름 #묵은나물 #건고사리불리는법 #고사리삶는법 #국산고사리 #국산건나물 #곤드레밥 #터주농산</h1></div></details><p class="sub">노란 칸 = 대표님 답변·실측으로 채울 부분 · 딸의 경험처럼 쓴 문장은 실제와 다르면 고치거나 빼 주세요</p>
+  </section>
+
+  <section id="questions">
+    <h2>아버지 이야기 질문지</h2>
+    <p class="lead">26년 터주대감의 기준을 상세페이지·블로그·인스타 이야기로 옮기기 위한 질문 24개</p>
+    <ul class="howto"><li>아버님께 직접 여쭤보고 대표님이 받아 적는 방식을 권장함</li><li>편하게 대화하며 휴대폰 녹음 후 녹음 파일만 보내도 됨</li><li>모든 질문에 답할 필요 없음 — 기억이 또렷한 것 위주로 충분함</li><li>숫자·연도·지명·이름은 생각나는 대로 구체적으로 (정확하지 않으면 "대략")</li></ul><h3>1. 시작 — 터주대감이 된 이야기</h3><p class="sub">상세페이지 첫 화면·블로그 첫 글의 출발점</p><ol class="qs" start="1"><li><b>농산물 일을 처음 시작한 때와 계기는?</b><span>예: 몇 살 때, 어디서, 누구 밑에서 배웠는지 / 2000년 &#x27;터주&#x27; 이름을 붙인 사연</span></li><li><b>처음 몇 년 동안 가장 힘들었던 일과 버틴 방법은?</b></li><li><b>&#x27;터주대감&#x27;이라는 이름은 누가, 언제부터 부르기 시작했는지?</b><span>거래처·시장 사람들이 부르던 별명인지, 직접 지은 이름인지</span></li></ol><h3>2. 고르는 눈 — 아버지만의 선별 기준</h3><p class="sub">&quot;26년 도매상의 눈으로 고른 대추&quot;를 증명하는 핵심 항목</p><ol class="qs" start="4"><li><b>좋은 대추를 고를 때 가장 먼저 보는 것 3가지는?</b><span>색·크기·껍질·당도·씨·주름·수분 등 실제로 확인하는 순서대로</span></li><li><b>산지에 직접 가서 확인하는 것은 무엇이며, 1년에 몇 번 정도 가는지?</b><span>가는 시기, 함께 보는 사람, 현장에서 하는 일</span></li><li><b>보고도 사지 않고 돌아선 물건이 있었다면 그 이유는?</b><span>기준을 보여 주는 가장 강한 이야기 — 기억나는 장면 하나</span></li><li><b>건나물(고사리·취나물·곤드레 등)을 고를 때의 기준은 대추와 어떻게 다른지?</b><span>국산·수입 구별법, 좋은 건나물의 특징</span></li><li><b>일반 소비자가 집에서 좋은 대추·건나물을 구별하는 간단한 방법을 알려 준다면?</b><span>블로그·카드뉴스 &#x27;고르는 법&#x27; 콘텐츠로 사용</span></li></ol><h3>3. 산지와 사람 — 원산지 이야기</h3><p class="sub">명절 세트·상세페이지 원산지 설명에 사용</p><ol class="qs" start="9"><li><b>대추는 어느 지역에서, 언제부터 들여오고 있는지? 그 지역을 고른 이유는?</b><span>경북 경산 등 — 산지 이름과 거래 기간</span></li><li><b>가장 오래 거래한 농가·산지 상인과의 사연은?</b><span>이름 공개 가능 여부도 함께 표기</span></li><li><b>건나물 품목별 산지는 어디인지?</b><span>고사리 ○○ / 취나물 ○○ / 곤드레 ○○ 식으로</span></li><li><b>해마다 작황이 나쁠 때는 어떻게 대처하는지?</b><span>물량이 부족해도 기준을 지킨 사례가 있으면 함께</span></li></ol><h3>4. 기억에 남는 일 — 이력과 근거</h3><p class="sub">자료가 확인된 것만 소비자 채널에 사용함</p><ol class="qs" start="13"><li><b>청와대 기념품 납품은 언제, 어떤 품목으로, 어떤 경로로 진행했는지?</b><span>납품 확인서·거래명세서·사진·기사 등 남아 있는 자료 표기</span></li><li><b>산림조합과의 협력은 어떤 방식이었고 언제부터인지?</b><span>계약서·거래 기록 여부</span></li><li><b>&#x27;판매왕&#x27;은 어디에서 받은 것이며 몇 년도인지?</b><span>상장·트로피·사진 여부</span></li><li><b>그 밖에 거래처·고객에게 들은 말 중 가장 자랑스러운 말은?</b></li></ol><h3>5. 딸에게 물려주고 싶은 것</h3><p class="sub">&quot;26년 도매 아버지의 기준을 잇는 2대&quot; 이야기의 중심</p><ol class="qs" start="17"><li><b>딸이 가업을 잇겠다고 했을 때 어떤 생각이 들었는지?</b></li><li><b>딸에게 꼭 지켰으면 하는 장사 원칙 한 가지는?</b><span>한 문장으로 — 상세페이지·프로필 문구 후보</span></li><li><b>딸이 하는 방식(소포장·온라인·SNS) 중 걱정되는 점과 기대되는 점은?</b><span>솔직한 답변일수록 좋은 이야기가 됨</span></li></ol><h3>6. 대표님(딸) 본인 질문</h3><p class="sub">아버지와 딸, 두 기준이 만나는 지점</p><ol class="qs" start="20"><li><b>아버지 일을 옆에서 보며 가장 인상 깊었던 장면은?</b><span>산지·창고·시장 등 구체적인 한 장면</span></li><li><b>소매 브랜드를 시작한 이유는?</b></li><li><b>아이에게 먹일 수 있는지를 기준으로 삼게 된 계기는?</b><span>11살·7살 아이가 대추칩·대추를 먹는 장면 포함</span></li><li><b>아버지 기준에 대표님이 더한 기준은 무엇인지?</b><span>예: 세척 방식, 씨 제거, 포장, 위생 관리</span></li><li><b>고객에게 들은 말 중 가장 힘이 됐던 후기는?</b><span>쿠팡·스마트스토어 후기 캡처가 있으면 함께</span></li></ol><h3>7. 함께 보내 주실 자료</h3><div class="tw"><table><thead><tr><th>자료</th><th>용도</th></tr></thead><tbody><tr><td>아버지 산지 방문·검수 사진 3~4장 (오래된 사진 포함)</td><td>상세페이지 첫 화면·블로그 1편</td></tr><tr><td>창고·작업장에서 대추를 고르는 손 사진</td><td>&quot;선별 안목&quot; 근거 이미지</td></tr><tr><td>청와대 납품·산림조합·판매왕 관련 서류·사진</td><td>회사소개·거래처 제안서 신뢰 근거</td></tr><tr><td>대추칩을 먹는 아이 영상 (기존 보유분)</td><td>릴스·상세페이지 &#x27;아이 간식&#x27; 파트</td></tr><tr><td>씨 제거 단면 / 손에 든 크기 비교 / 원물 살펴보는 장면</td><td>상세페이지 촬영 3장</td></tr><tr><td>쿠팡·스마트스토어 후기 캡처</td><td>상세페이지 후기 파트</td></tr></tbody></table></div><p class="sub">답변 사용 범위: 상세페이지·블로그·인스타그램·스레드·회사소개서. 실명·얼굴·거래처 이름은 대표님 확인 후에만 공개함</p>
+  </section>
+
+  <footer>VASZERO Consulting · 정경 010-9727-6345</footer>
+</div>
+<script>
+document.getElementById("detailFrame").srcdoc = "<!doctype html>\n<html lang=\"ko\"><head><meta charset=\"utf-8\">\n<style>\n:root{--g:#3F6B3A;--g2:#6E8F5E;--lg:#EEF3EC;--cream:#F7F4EC;--ink:#2B2B2B;--sub:#666;--line:#DCE1D6;--brown:#8A6A45;--y:#FFF1B8;--yt:#7A5B00}\n*{box-sizing:border-box;margin:0;padding:0}\nbody{width:1520px;background:#E9EBE5;font-family:\"Noto Sans CJK KR\",sans-serif;color:var(--ink);padding:20px}\n.top{display:flex;justify-content:space-between;align-items:flex-end;margin:0 6px 14px}\n.top h1{font-size:24px;color:var(--g)}\n.top p{font-size:14px;color:var(--sub)}\n.tag{font-size:13px;font-weight:700;color:var(--g);border:1.5px solid var(--g);padding:3px 10px;border-radius:14px;background:#fff}\n.cols{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}\n.col{background:#fff;display:flex;flex-direction:column}\n.blk{padding:22px 22px}\n.cream{background:var(--cream)}\n.lgb{background:var(--lg)}\n.dark{background:var(--g);color:#fff}\n.no{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--sub);margin-bottom:8px}\n.no b{background:var(--ink);color:#fff;font-size:12px;padding:2px 6px;border-radius:3px}\n.dark .no{color:#D6E4CE}.dark .no b{background:#fff;color:var(--g)}\nh2{font-family:\"Noto Serif CJK KR\",serif;font-size:23px;line-height:1.35;margin-bottom:10px}\nh2 em{font-style:normal;color:var(--g)}\n.dark h2{color:#fff}\np.t{font-size:13.5px;line-height:1.6;color:#555}\n.dark p.t{color:#E3ECDD}\n.ph{background:repeating-linear-gradient(45deg,#E2E6DC,#E2E6DC 9px,#EBEEE6 9px,#EBEEE6 18px);border:1.5px dashed #A5AF9B;border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-size:12px;color:#5D6B52;padding:8px;line-height:1.45}\n.ph b{font-size:11px;letter-spacing:1px;color:var(--g);margin-bottom:3px}\n.dark .ph{background:repeating-linear-gradient(45deg,#557F4F,#557F4F 9px,#5C8756 9px,#5C8756 18px);border-color:#9DBA92;color:#E7EFE2}\n.dark .ph b{color:#fff}\n.f{background:var(--y);color:var(--yt);font-weight:700;padding:0 3px;border-radius:2px}\n.hook{text-align:center}\n.hook .brand{font-family:\"Noto Serif CJK KR\",serif;font-size:20px;font-weight:700;color:var(--g)}\n.hook .bs{font-size:11px;color:var(--sub);margin-bottom:16px}\n.hook h2{font-size:27px}\n.hook h2 em{color:var(--g)}\n.hand{font-family:\"Noto Serif CJK KR\",serif;font-size:16px;color:var(--brown);margin:8px 0 14px}\n.icons{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}\n.ic{background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px 4px;text-align:center;font-size:13px;font-weight:700;color:var(--g)}\n.ic i{display:block;font-style:normal;font-size:20px;margin-bottom:2px}\n.band{background:var(--g);color:#fff;text-align:center;padding:14px;font-size:15px;font-weight:700;line-height:1.5}\n.life{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:18px 22px}\n.life div{font-size:13px;text-align:center;color:#444}\n.life i{display:block;font-style:normal;font-size:22px}\n.badges{display:flex;gap:8px;justify-content:center;margin-top:-30px;position:relative}\n.bd{width:78px;height:78px;border-radius:50%;background:#fff;border:2px solid var(--g);display:flex;align-items:center;justify-content:center;text-align:center;font-size:13px;font-weight:700;color:var(--g);line-height:1.3}\n.step{display:grid;grid-template-columns:1fr 120px;border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-bottom:6px}\n.step div:first-child{padding:8px 10px;font-size:13.5px;font-weight:700}\n.step small{display:block;font-size:10.5px;color:var(--sub);font-weight:400;letter-spacing:1px}\n.step .ph{border-radius:0;border:none;height:52px;font-size:10.5px}\n.ev{display:grid;grid-template-columns:44px 1fr;gap:10px;align-items:center;margin:10px 0;font-size:13px;color:#444}\n.ev > span{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--g2);display:flex;align-items:center;justify-content:center;font-size:18px}\n.quote{font-family:\"Noto Serif CJK KR\",serif;font-size:16px;line-height:1.6;text-align:center}\n.who{display:grid;grid-template-columns:1fr 130px;gap:10px;align-items:end}\n.who .nm{font-size:12px;color:var(--sub)}.who .nm b{display:block;font-size:17px;color:var(--ink)}\n.eat{display:grid;grid-template-columns:110px 1fr;gap:10px;margin-bottom:8px;align-items:center}\n.eat .ph{height:74px;font-size:10.5px}\n.eat b{display:block;font-size:14px}.eat span{font-size:12px;color:var(--sub)}\n.rvx{background:#FAFAF7;border:1px solid var(--line);border-radius:6px;padding:9px 10px;margin-bottom:7px;font-size:12.5px;line-height:1.5}\n.rvx b{color:#E0A800;letter-spacing:1px}.rvx i{display:block;text-align:right;font-style:normal;font-size:11px;color:var(--sub)}\n.nums{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center}\n.nums div{border:1px solid var(--line);border-radius:8px;padding:12px 4px}\n.nums b{display:inline-block;font-size:19px;font-family:\"Noto Serif CJK KR\",serif;margin-bottom:4px}\n.nums span{display:block;font-size:12px;color:#555;line-height:1.45}\n.career div{display:grid;grid-template-columns:58px 1fr;font-size:13px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.2);color:#E8F0E3}\n.career b{font-size:13px}\n.chk div{font-size:13px;padding:5px 0;border-bottom:1px dashed var(--line)}\n.chk div::before{content:\"\u2611 \";color:var(--g)}\n.rv{border:1.5px dashed #A5AF9B;background:#FAFAF7;border-radius:6px;padding:10px;margin-bottom:7px;font-size:12px;color:#5D6B52;text-align:center}\n.opts{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:12px}\n.op{border:1px solid var(--line);border-radius:6px;text-align:center;padding:8px 2px;font-size:12px;background:#fff}\n.op b{display:block;color:var(--g);font-size:13px}\n.op .pr{margin-top:4px;font-weight:700}\n.op.best{border:2px solid var(--g)}\n.buy{background:var(--g);color:#fff;text-align:center;font-weight:700;padding:10px;border-radius:6px;margin-top:10px;font-size:15px}\n.keep{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;text-align:center;font-size:11.5px;color:#444}\n.keep div{background:#fff;border:1px solid var(--line);border-radius:6px;padding:10px 4px;line-height:1.45}\n.keep i{display:block;font-style:normal;font-size:20px}\n.faq div{background:#fff;border-radius:6px;padding:8px 10px;margin-bottom:6px;font-size:12.5px;line-height:1.5}\n.faq b{color:var(--g)}\n.close{text-align:center;padding:26px 22px}\n.close h2{font-size:22px}\n.foot{display:grid;grid-template-columns:repeat(3,1fr);text-align:center;font-size:12px;padding:10px 0 16px;color:#E3ECDD}\n.foot i{display:block;font-style:normal;font-size:18px}\n.note{margin:14px 6px 0;font-size:13px;color:var(--sub);line-height:1.6}\n</style></head><body>\n<div class=\"top\">\n  <div><h1>\ud130\uc8fc\ub18d\uc0b0 \uad6d\uc0b0 \uac74\ub098\ubb3c \uc0c1\uc138\ud398\uc774\uc9c0 \uac00\uc548 v4</h1><p>\ud798\uac00\ub124 \uc0dd\uac15\uccad \uc0c1\uc138\ud398\uc774\uc9c0 \uad6c\uc131 \uc21c\uc11c \uc801\uc6a9 \u00b7 \ubaa8\ubc14\uc77c \uc138\ub85c 1\uc7a5\uc744 4\uc5f4\ub85c \ub098\ub220 \ud55c\ub208\uc5d0 \ubcf4\ub294 \uad6c\uc131\uc548</p></div>\n  <div class=\"tag\">\ud130\uc8fc \ub300\ud45c\ub2d8 \uc6a9</div>\n</div>\n<div class=\"cols\">\n\n<!-- COL 1 : \ud6c4\ud0b9 \u00b7 \ud575\uc2ec \ud2b9\uc9d5 \u00b7 \uc6d0\ub8cc\u00b7\uc0b0\uc9c0 -->\n<div class=\"col\">\n  <div class=\"blk cream hook\">\n    <div class=\"brand\">\ud130\uc8fc\ub18d\uc0b0</div><div class=\"bs\">since 2000 \u00b7 \ub18d\uc0b0\ubb3c \uc804\ubb38 \ud130\uc8fc\ub300\uac10</div>\n    <div class=\"ph\" style=\"height:270px\"><b>\uc0ac\uc9c4 01 \u00b7 \uccab \ud654\uba74</b>\uace0\uc0ac\ub9ac\u00b7\ucde8\ub098\ubb3c\u00b7\uace4\ub4dc\ub808 \ubcf6\uc74c\uc774 \ub193\uc778<br>\uba85\uc808 \ub098\ubb3c \ud55c \uc0c1 (\uae40 \uc624\ub974\ub294 \ubc25\uacfc \ud568\uaed8)</div>\n    <h2 style=\"margin-top:16px\">\uba85\uc808 \ub098\ubb3c \ud55c \uc0c1,<br><em>\uad6d\uc0b0 \uac74\ub098\ubb3c</em>\ub85c</h2>\n    <div class=\"hand\">\u201c\ud130\uc8fc\ub300\uac10\uc774 \uc0b0\uc9c0\uc5d0\uc11c<br>\uc9c1\uc811 \ubcf4\uace0 \uace8\ub790\uc2b5\ub2c8\ub2e4.\u201d</div>\n  </div>\n  <div class=\"blk\" style=\"padding-top:16px;padding-bottom:16px\">\n    <div class=\"nums\">\n      <div><b class=\"f\">26\ub144</b><span>\ub18d\uc0b0\ubb3c\ub9cc \uace0\ub978<br>\uc120\ubcc4\uc758 \ub208</span></div>\n      <div><b class=\"f\">\uad6d\uc0b0 3\uc885</b><span>\uace0\uc0ac\ub9ac\u00b7\ucde8\ub098\ubb3c<br>\u00b7\uace4\ub4dc\ub808</span></div>\n      <div><b class=\"f\">2\ub300\uc9f8</b><span>\uc544\ubc84\uc9c0\uc640 \ub538\uc774<br>\ud568\uaed8 \uace0\ub985\ub2c8\ub2e4</span></div>\n    </div>\n  </div>\n  <div class=\"band\">\uba85\uc808 \uc0c1\ucc28\ub9bc\ubd80\ud130 \uc624\ub298 \uc800\ub141 \ubc18\ucc2c\uae4c\uc9c0</div>\n  <div class=\"life\"><div><i>\ud83c\udf5a</i>\uba85\uc808\u00b7\ub300\ubcf4\ub984<br>\ub098\ubb3c \uc0c1\ucc28\ub9bc</div><div><i>\ud83d\udc75</i>\ubd80\ubaa8\ub2d8 \ub301<br>\uba85\uc808 \uc120\ubb3c</div><div><i>\ud83e\udd58</i>\uc721\uac1c\uc7a5\u00b7\ube44\ube54\ubc25<br>\uc9d1\ubc25 \uc7ac\ub8cc</div><div><i>\ud83c\udfea</i>\uc2dd\ub2f9\u00b7\ubc18\ucc2c\uac00\uac8c<br>\ub300\ub7c9 \ub0a9\ud488</div></div>\n  <div class=\"blk lgb\" style=\"flex:1\">\n    <div class=\"no\"><b>01</b>\uc88b\uc740 \uc6d0\ubb3c\uc5d0\uc11c \uc2dc\uc791\ud569\ub2c8\ub2e4</div>\n    <h2><span class=\"f\">\uac15\uc6d0\u00b7\uacbd\ub0a8</span> \uad6d\uc0b0 \ub098\ubb3c,<br><em>\uc9c1\uc811 \ubcf4\uace0</em> \ub4e4\uc785\ub2c8\ub2e4</h2>\n    <p class=\"t\"><span class=\"f\">\ud574\ub9c8\ub2e4 \uc218\ud655\ucca0\uc5d0</span> \uc0b0\uc9c0\ub97c \ucc3e\uc544\uac00 \ub9d0\ub9ac\ub294 \uacfc\uc815\uacfc \uc6d0\ubb3c\uc744 \ud655\uc778\ud569\ub2c8\ub2e4.</p>\n    <div class=\"ph\" style=\"height:150px;margin-top:12px\"><b>\uc0ac\uc9c4 02</b>\uc0b0\uc9c0 \uc6d0\ubb3c \ud074\ub85c\uc988\uc5c5 (\uc904\uae30\u00b7\uc0c9\uc774 \ubcf4\uc774\uac8c)</div>\n    <div class=\"badges\" style=\"margin-top:-26px\"><div class=\"bd\">\uad6d\uc0b0<br>\uc6d0\ubb3c</div><div class=\"bd\">\ud488\ubaa9\ubcc4<br>\uc0b0\uc9c0 \ud45c\uae30</div><div class=\"bd\">\uc9c1\uc811<br>\uc120\ubcc4</div></div>\n  </div>\n</div>\n\n<!-- COL 2 : \uc0dd\uc0b0\uc790 \u00b7 \uacf5\uc815 \u00b7 \uc778\uc99d -->\n<div class=\"col\">\n  <div class=\"blk cream\">\n    <div class=\"no\"><b>02</b>\uace0\ub974\ub294 \uc0ac\ub78c</div>\n    <h2>26\ub144 \ud130\uc8fc\ub300\uac10,<br><em>\uadf8 \uae30\uc900\uc744 \ub538\uc774</em> \uc787\uc2b5\ub2c8\ub2e4</h2>\n    <div class=\"ph\" style=\"height:210px\"><b>\uc0ac\uc9c4 03</b>\uc0b0\uc9c0\uc5d0\uc11c \uace0\uc0ac\ub9ac\ub97c \uc0b4\ud3b4\ubcf4\ub294 \uc544\ubc84\uc9c0<br>+ \uc606\uc5d0 \uc120 \ub300\ud45c\ub2d8</div>\n    <p class=\"quote\" style=\"color:var(--g);margin-top:14px\">\u201c<span class=\"f\">\ub0b4 \uc2dd\uad6c \ubc25\uc0c1\uc5d0 \ubabb \uc62c\ub9b4 \uac74<br>\ub0a8\uc5d0\uac8c\ub3c4 \ud314\uc9c0 \ub9c8\ub77c.</span>\u201d</p>\n    <p class=\"t\" style=\"text-align:center;margin-top:4px\">\u2014 \ud130\uc8fc\ub300\uac10, \uc544\ubc84\uc9c0</p>\n    <p class=\"t\" style=\"margin-top:10px\">\uc544\ubc84\uc9c0\ub294 \uc0b0\uc9c0\uc640 \uc2dc\uc7a5\uc744 \uc624\uac00\uba70 26\ub144 \ub3d9\uc548 \ub098\ubb3c\uc744 \ubd10 \uc654\uc2b5\ub2c8\ub2e4. \ub538\uc740 \uadf8 \ub208\uc5d0 \u201c\uc6b0\ub9ac \uc544\uc774\uc5d0\uac8c \uba39\uc77c \uc218 \uc788\ub294\uac00\u201d\ub77c\ub294 \uae30\uc900\uc744 \ud558\ub098 \ub354 \uc5b9\uc5c8\uc2b5\ub2c8\ub2e4.</p>\n  </div>\n  <div class=\"blk\">\n    <div class=\"no\"><b>03</b>\uc774\ub807\uac8c \uace0\ub974\uace0 \ub2f4\uc2b5\ub2c8\ub2e4</div>\n    <div class=\"step\"><div><small>STEP 01</small>\uc0b0\uc9c0\uc5d0\uc11c \uc6d0\ubb3c \ud655\uc778</div><div class=\"ph\"><b>\uc0ac\uc9c4</b>\uc0b0\uc9c0 \ubc29\ubb38</div></div>\n    <div class=\"step\"><div><small>STEP 02</small>\uac74\uc870 \uc0c1\ud0dc \ud655\uc778<br><span class=\"f\" style=\"font-size:11px\">\uc904\uae30 \uad75\uae30\u00b7\uc0c9\u00b7\ud5a5\uae4c\uc9c0</span></div><div class=\"ph\"><b>\uc0ac\uc9c4</b>\uac74\uc870 \uc0c1\ud0dc</div></div>\n    <div class=\"step\"><div><small>STEP 03</small>\uc774\ubb3c\u00b7\ubd80\uc2a4\ub7ec\uae30 \uc120\ubcc4</div><div class=\"ph\"><b>\uc0ac\uc9c4</b>\uc120\ubcc4 \uc791\uc5c5</div></div>\n    <div class=\"step\"><div><small>STEP 04</small>\uc18c\ubd84\u00b7\ud3ec\uc7a5</div><div class=\"ph\"><b>\uc0ac\uc9c4</b>\ud3ec\uc7a5 \uc791\uc5c5</div></div>\n  </div>\n  <div class=\"blk lgb\" style=\"flex:1\">\n    <div class=\"no\"><b>04</b>\ud655\uc778\ud560 \uc218 \uc788\ub294 \uadfc\uac70</div>\n    <h2 style=\"font-size:20px\">\ub9d0\uc774 \uc544\ub2c8\ub77c<br><em>\uc790\ub8cc</em>\ub85c \ubcf4\uc5ec \ub4dc\ub9bd\ub2c8\ub2e4</h2>\n    <div class=\"ev\"><span>\ud83d\udccd</span><div>\ud488\ubaa9\ubcc4 \uc6d0\uc0b0\uc9c0 \ud45c\uae30<br><span class=\"f\">\uace0\uc0ac\ub9ac \uacbd\ub0a8 / \ucde8\ub098\ubb3c \uac15\uc6d0 / \uace4\ub4dc\ub808 \uac15\uc6d0 \uc815\uc120</span></div></div>\n    <div class=\"ev\"><span>\ud83d\udcc4</span><div>\uc2dd\ud488 \ud45c\uc2dc\uc0ac\ud56d\u00b7\ubcf4\uad00 \uae30\uc900 \uacf5\uac1c<br><span class=\"f\">\uc81c\ud488\ub9c8\ub2e4 \uc6d0\uc0b0\uc9c0\u00b7\ub0b4\uc6a9\ub7c9\u00b7\ubcf4\uad00\ubc95 \ud45c\uae30</span></div></div>\n    <div class=\"ev\"><span>\ud83c\udfc5</span><div><span class=\"f\">HACCP \uc778\uc99d \uc2dc\uc124\uc5d0\uc11c \uc18c\ubd84\u00b7\ud3ec\uc7a5</span><br><span class=\"f\">\uad6d\uc0b0 100%</span></div></div>\n  </div>\n</div>\n\n<!-- COL 3 : \uc22b\uc790\u00b7\uacbd\ub825 \u00b7 \ud65c\uc6a9\ubc95 \u00b7 \ud6c4\uae30 -->\n<div class=\"col\">\n  <div class=\"blk dark\">\n    <div class=\"no\"><b>05</b>\ud130\uc8fc\ub18d\uc0b0\uc774 \uac78\uc5b4\uc628 \uae38</div>\n    <h2 style=\"font-size:30px\">since 2000<br>26\ub144</h2>\n    <div class=\"career\">\n      <div><b class=\"f\">2000</b>\ub18d\uc0b0\ubb3c \ub3c4\ub9e4 \uc2dc\uc791</div>\n      <div><b class=\"f\">\u25cb\u25cb\u25cb\u25cb</b>\uccad\uc640\ub300 \uae30\ub150\ud488 \ub0a9\ud488</div>\n      <div><b class=\"f\">\u25cb\u25cb\u25cb\u25cb</b>\uc0b0\ub9bc\uc870\ud569 \ud611\ub825 \u00b7 \ud310\ub9e4\uc655 \uc218\uc0c1</div>\n      <div><b class=\"f\">2026</b>\ub77c\uc774\ube0c\ucee4\uba38\uc2a4 \uc644\ud310</div>\n    </div>\n    <div class=\"ph\" style=\"height:110px;margin-top:12px\"><b>\uc0ac\uc9c4 04</b>\uc624\ub798\ub41c \uc0ac\uc9c4 \u00b7 \ud604\uc7a5 \uae30\ub85d</div>\n  </div>\n  <div class=\"blk\">\n    <div class=\"no\"><b>06</b>\uc774\ub807\uac8c \ub4dc\uc138\uc694</div>\n    <h2>\ubd88\ub824 \ub450\uba74<br><em>\ud55c \uc8fc \ubc18\ucc2c</em>\uc774 \ub429\ub2c8\ub2e4</h2>\n    <div class=\"eat\"><div class=\"ph\"><b>\uc0ac\uc9c4</b>\uace0\uc0ac\ub9ac\ubcf6\uc74c</div><div><b>\uace0\uc0ac\ub9ac\ubcf6\uc74c</b><span>\uba85\uc808\u00b7\uc81c\uc0ac \ub098\ubb3c \uc0c1\uc758 \uae30\ubcf8</span></div></div>\n    <div class=\"eat\"><div class=\"ph\"><b>\uc0ac\uc9c4</b>\uc721\uac1c\uc7a5</div><div><b>\uc721\uac1c\uc7a5 \u00b7 \uad6d</b><span>\ubd88\ub9b0 \uace0\uc0ac\ub9ac\ub97c \ub4ec\ubfcd</span></div></div>\n    <div class=\"eat\"><div class=\"ph\"><b>\uc0ac\uc9c4</b>\uace4\ub4dc\ub808\ubc25</div><div><b>\uace4\ub4dc\ub808\ubc25</b><span>\uc591\ub150\uc7a5 \ud558\ub098\uba74 \ud55c \ub07c</span></div></div>\n    <div class=\"eat\"><div class=\"ph\"><b>\uc0ac\uc9c4</b>\ucde8\ub098\ubb3c\ubcf6\uc74c</div><div><b>\ucde8\ub098\ubb3c\ubcf6\uc74c</b><span>\ub4e4\uae30\ub984\uc5d0 \uc0b4\uc9dd \ubcf6\uc544</span></div></div>\n    <div class=\"eat\"><div class=\"ph\"><b>\uc0ac\uc9c4</b>\ub300\ubcf4\ub984 \uc0c1</div><div><b>\uc815\uc6d4\ub300\ubcf4\ub984 \ubb35\uc740\ub098\ubb3c</b><span>\uc138 \uac00\uc9c0\ub97c \ud55c \ubc88\uc5d0</span></div></div>\n    <div class=\"chk\" style=\"margin-top:10px\">\n      <div>\uad6d\uc0b0 \ub098\ubb3c\uc778\uc9c0 \ud655\uc778\ud558\uace0 \uc0ac\uace0 \uc2f6\uc740 \ubd84</div>\n      <div>\uba85\uc808\u00b7\ub300\ubcf4\ub984 \ub098\ubb3c\uc744 \ud55c \uacf3\uc5d0\uc11c \uc900\ube44\ud558\uace0 \uc2f6\uc740 \ubd84</div>\n      <div>\ubd80\ubaa8\ub2d8 \ub301\uc5d0 \ubcf4\ub0bc \uba85\uc808 \uc120\ubb3c\uc744 \ucc3e\ub294 \ubd84</div>\n    </div>\n  </div>\n  <div class=\"blk cream\" style=\"flex:1\">\n    <div class=\"no\"><b>07</b>\uba3c\uc800 \ub4dc\uc154 \ubcf8 \ubd84\ub4e4\uc758 \uc774\uc57c\uae30</div>\n    <div class=\"rvx\"><b>\u2605\u2605\u2605\u2605\u2605</b> <span class=\"f\">\u201c\uace0\uc0ac\ub9ac\uac00 \uc9c8\uae30\uc9c0 \uc54a\uace0 \ud5a5\uc774 \uc88b\uc544\uc694. \uba85\uc808 \ub098\ubb3c \uc5ec\uae30\uc11c \ub2e4 \uc0c0\uc5b4\uc694.\u201d</span><i>\u2013 \uae40\u25cb\u25cb\ub2d8</i></div>\n    <div class=\"rvx\"><b>\u2605\u2605\u2605\u2605\u2605</b> <span class=\"f\">\u201c\uace4\ub4dc\ub808\ubc25 \ud574 \uba39\uc5c8\ub294\ub370 \uc774\ubb3c \ud558\ub098 \uc5c6\uc774 \uae68\ub057\ud588\uc5b4\uc694.\u201d</span><i>\u2013 \uc774\u25cb\u25cb\ub2d8</i></div>\n    <div class=\"rvx\"><b>\u2605\u2605\u2605\u2605\u2605</b> <span class=\"f\">\u201c\ubd80\ubaa8\ub2d8 \ub301\uc5d0 \ub300\ubcf4\ub984 \uc138\ud2b8\ub85c \ubcf4\ub0c8\ub354\ub2c8 \uc88b\uc544\ud558\uc168\uc5b4\uc694.\u201d</span><i>\u2013 \ubc15\u25cb\u25cb\ub2d8</i></div>\n  </div>\n</div>\n\n<!-- COL 4 : \uad6c\uc131\u00b7\uad6c\ub9e4 -->\n<div class=\"col\">\n  <div class=\"blk cream\">\n    <div class=\"no\"><b>08</b>\uc81c\ud488 \uad6c\uc131 \ubc0f \uac00\uaca9</div>\n    <h2>\ud130\uc8fc\ub18d\uc0b0<br><em>\uad6d\uc0b0 \uac74\ub098\ubb3c</em></h2>\n    <div class=\"ph\" style=\"height:150px\"><b>\uc0ac\uc9c4 05</b>\uc0c8 \ud328\ud0a4\uc9c0 3\uc885 \ub098\ub780\ud788<br>(\ub9ac\ub274\uc5bc \uc644\ub8cc \ud6c4 \ucd2c\uc601)</div>\n    <div class=\"opts\">\n      <div class=\"op\"><b>\uac74\uace0\uc0ac\ub9ac</b><span class=\"f\">100g</span><div class=\"pr\"><span class=\"f\">12,000\uc6d0</span></div></div>\n      <div class=\"op\"><b>\uac74\ucde8\ub098\ubb3c</b><span class=\"f\">100g</span><div class=\"pr\"><span class=\"f\">10,000\uc6d0</span></div></div>\n      <div class=\"op\"><b>\uac74\uace4\ub4dc\ub808</b><span class=\"f\">100g</span><div class=\"pr\"><span class=\"f\">11,000\uc6d0</span></div></div>\n      <div class=\"op best\"><b>\ub300\ubcf4\ub984 3\uc885</b><span class=\"f\">\uac01 100g</span><div class=\"pr\"><span class=\"f\">30,000\uc6d0</span></div></div>\n    </div>\n    <div class=\"buy\">\uc9c0\uae08 \uad6c\ub9e4\ud558\uae30 \u203a</div>\n  </div>\n  <div class=\"blk\">\n    <div class=\"no\"><b>09</b>\ubc30\uc1a1 \ubc0f \ubcf4\uad00 \uc548\ub0b4</div>\n    <div class=\"keep\" style=\"margin-bottom:8px\">\n      <div><i>\ud83d\ude9a</i><span class=\"f\">\uc624\ud6c4 2\uc2dc</span> \uc774\uc804 \uc8fc\ubb38<br>\ub2f9\uc77c \ucd9c\uace0</div>\n      <div><i>\ud83d\udce6</i>\uc2b5\uae30 \ub9c9\ub294 \ud3ec\uc7a5<br>\uaf3c\uaf3c\ud558\uac8c \ubc1c\uc1a1</div>\n      <div><i>\ud83c\udf81</i>\uc120\ubb3c \ud3ec\uc7a5\u00b7<br>\ubd80\ubaa8\ub2d8 \ub301 \uc9c1\ubc30\uc1a1</div>\n    </div>\n    <div class=\"keep\">\n      <div><i>\ud83d\udca7</i>\ucc2c\ubb3c\uc5d0 \ubd88\ub9b0 \ub4a4 \uc0b6\uae30<br><span class=\"f\">\ud558\ub8fb\ubc24 + 20~30\ubd84</span></div>\n      <div><i>\ud83c\udf21</i>\uc9c1\uc0ac\uad11\uc120 \ud53c\ud574<br>\uc11c\ub298\u00b7\uac74\uc870\ud55c \uacf3</div>\n      <div><i>\ud83e\uddca</i>\ubd88\ub9b0 \ub098\ubb3c\uc740<br>\uc18c\ubd84\ud574 \ub0c9\ub3d9</div>\n    </div>\n    <p class=\"t\" style=\"margin-top:8px;font-size:12px\">\uac74\uc870 100g \u2192 \ubd88\ub9b0 \ud6c4 \uc57d <span class=\"f\">600g</span> (4\uc778 \uac00\uc871 2~3\ud68c \ubd84\ub7c9)</p>\n  </div>\n  <div class=\"blk lgb\">\n    <div class=\"no\"><b>10</b>\uc790\uc8fc \ubb3b\ub294 \uc9c8\ubb38</div>\n    <div class=\"faq\">\n      <div><b>Q. \uad6d\uc0b0 \ub9de\ub098\uc694?</b><br>A. \ub124, \uc6d0\uc0b0\uc9c0\ub294 <span class=\"f\">\uace0\uc0ac\ub9ac \uacbd\ub0a8, \ucde8\ub098\ubb3c\u00b7\uace4\ub4dc\ub808 \uac15\uc6d0</span>\uc785\ub2c8\ub2e4.</div>\n      <div><b>Q. \uc5bc\ub9c8\ub098 \ubd88\ub824\uc57c \ud558\ub098\uc694?</b><br>A. \ucc2c\ubb3c\uc5d0 <span class=\"f\">\ud558\ub8fb\ubc24</span> \ubd88\ub9b0 \ub4a4 <span class=\"f\">20~30\ubd84</span> \uc0b6\uc544 \uc8fc\uc138\uc694.</div>\n      <div><b>Q. \ub300\ub7c9 \uad6c\ub9e4\u00b7\ub0a9\ud488\ub3c4 \ub418\ub098\uc694?</b><br>A. \ub124, \ub300\ud3ec\uc7a5(<span class=\"f\">1kg\u00b710kg</span>)\uacfc \ub0a9\ud488\uc740 \ubcc4\ub3c4\ub85c \ubb38\uc758\ud574 \uc8fc\uc138\uc694.</div>\n    </div>\n  </div>\n  <div class=\"blk dark close\" style=\"flex:1\">\n    <h2>\uc5b4\ub514\uc11c \uc654\ub294\uc9c0 \uc544\ub294 \ub098\ubb3c\uc744<br>\uc2dd\ud0c1\uc5d0 \uc62c\ub9ac\uc138\uc694</h2>\n    <p class=\"t\" style=\"font-size:15px;font-weight:700;color:#fff;margin-top:6px\">\ud130\uc8fc\ub18d\uc0b0</p>\n    <div class=\"foot\"><div><i>\ud83c\udf31</i>\uad6d\uc0b0 \uc6d0\ubb3c</div><div><i>\u26f0</i>\uc0b0\uc9c0 \ud655\uc778</div><div><i>\ud83e\udd1d</i>2\ub300\uc9f8 \uae30\uc900</div></div>\n  </div>\n</div>\n</div>\n<div class=\"note\">\u00b7 <span class=\"f\">\ub178\ub780 \ud45c\uc2dc</span> = \uc608\uc2dc\ub85c \ub123\uc740 \ubb38\uad6c\u00b7\uc22b\uc790 \u2014 \uc2e4\uc81c \uc0b0\uc9c0\u00b7\uac00\uaca9\u00b7\uc6a9\ub7c9\u00b7\ud6c4\uae30\u00b7\uc778\uc99d\u00b7\uc774\ub825\u00b7\ubc30\uc1a1 \uc870\uac74\uc73c\ub85c \ubc14\uafc0 \ubd80\ubd84 &nbsp;\u00b7 \uc0ac\uc9c4 \uce78 = \ucd2c\uc601\ud560 \uc7a5\uba74 &nbsp;\u00b7 \uc21c\uc11c = \ud798\uac00\ub124 \uc0dd\uac15\uccad 10\uad6c\uac04 (\ud6c4\ud0b9 \u2192 \ud575\uc2ec \ud2b9\uc9d5 \u2192 01 \uc6d0\ub8cc\u00b7\uc0b0\uc9c0 \u2192 02 \uc0dd\uc0b0\uc790 \u2192 03 \uacf5\uc815 \u2192 04 \uc778\uc99d \u2192 05 \uc22b\uc790\u00b7\uacbd\ub825 \u2192 06 \ud65c\uc6a9 \u2192 07 \ud6c4\uae30 \u2192 08~10 \uad6c\uc131\u00b7\uad6c\ub9e4)</div>\n</body></html>\n";
+</script>
+</body>
+</html>
